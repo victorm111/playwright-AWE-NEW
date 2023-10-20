@@ -86,7 +86,7 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
 
         try:
             self.foundCalls.page.wait_for_load_state()
-            self.foundCalls.wait_for(timeout=15000) # check if 'found' located
+            self.foundCalls.wait_for(timeout=24000) # check if 'found' located
         except PlaywrightTimeoutError:
             return_value= 'null'
         except:
