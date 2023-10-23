@@ -48,8 +48,15 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         self.context = browser.new_context(storage_state=load_context, no_viewport=True)
 
         self.page = self.context.new_page()     # first tab page in context
+        Playwright.selectors.set_test_id_attribute("class")
 
-        self.resetDefault = self.page.get_by_text('Reset to default')
+        #self.timeConfig = self.page.get_by_test_id("[data-testid=\"filterButtonContainer1\"] [data-testid=\"iconbutton-testid\"]")
+        self.time_select = self.page.get_by_test_id("MuiButtonBase-root MuiIconButton-root icon-time-picker verint-icon-button verint-icon-medium")
+        self.time_config = self.page.get_by_test_id("MuiInputBase-input MuiInput-input")
+        self.time_hours = self.page.get_by_label("mui-component-select-timeFrameLastDateTimeSelect")
+        self.time_dropDown = self.page.get_by_label("mui-component-select-timeFrameLastDateTimeSelect")
+        self.time_apply = self.page.get_by_role("button", name="Apply")
+
         self.NoCallsRetrieved = self.page.get_by_text('No call issues to display')
         self.foundCalls = self.page.get_by_text(re.compile(r'Found\s\d+\scalls'))
         self.DownloadCSV = self.page.get_by_text("Export to CSV", exact=True)
@@ -75,18 +82,28 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         #self.page.reload()  #  was trouble with table loading results even if issues were seen
         return
 
-    def clickDefault(self) -> None:
-        self.resetDefault.wait_for()
-        self.resetDefault.click()
+    def config_timeInterval(self) -> None:
+        # steps select 'time frame' in lhs menu
+        # select 'last'
+        # select 24 hours
+        # hit apply
+        self.time_select.wait_for()
+        self.time_select.click()
+        self.time_config.clear()        # clear input
+        self.time_config.fill("24")     # inject 24
+        self.time_dropDown.select_option("Hours")
+        self.time_apply.click()
         return
 
-    def check_recordings_found(self) -> str:
+
+
+    def check_recordings_found(self, time_out) -> str:
 
         return_value = 'none'
 
         try:
             self.foundCalls.page.wait_for_load_state()
-            self.foundCalls.wait_for(timeout=24000) # check if 'found' located
+            self.foundCalls.wait_for(timeout=time_out) # check if 'found' located
         except PlaywrightTimeoutError:
             return_value= 'null'
         except:

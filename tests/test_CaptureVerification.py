@@ -77,14 +77,10 @@ def test_CaptureVerification(browser: Browser, test_read_config_file, load_conte
     CaptureVerificationResults_page.load()
     # test for 1 day of calls, set up initially as default search window
 
-    #CaptureVerificationResults_page.clickDefault()
-    #CaptureVerificationResults_page.check_no_recordings_found()
-
-    # stop tracing
-    # browser.stop_tracing()
-
+    # configure time interval
+    CaptureVerificationResults_page.config_timeInterval()
     # if call issues found means call errors, flag as test fail
-    call_issues = CaptureVerificationResults_page.check_recordings_found()
+    call_issues = CaptureVerificationResults_page.check_recordings_found(time_out=60000)
     # null returned if timeout or exception retrieving issues table
     if call_issues != 'null':
         LOGGER.debug('test_CaptureVerification: call issues found, downloadCSV')
