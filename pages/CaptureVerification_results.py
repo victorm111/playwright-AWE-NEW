@@ -52,7 +52,10 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         self.leftMenu = self.page.get_by_text("OrganizationTime FrameData SourcesSeverityIssues")
         self.time_frame_select = self.page.get_by_test_id("MuiButtonBase-root MuiIconButton-root icon-time-picker verint-icon-button verint-icon-medium") # lhs menu
         #self.time_select = self.page.get_by_role("heading", name = "Time Frame")
+        # iframe locator for set time lhs menu, used 'last' radio button selector
+        self.time_radio_iframe = self.page.frame_locator('timeFrameLastDateTimeRadio')
         self.time_radio = self.page.get_by_role('radio', name='timeFrameLastDateTimeRadio')
+        self.time_radio_iframe_all=self.page.frame_locator('timeFrameLastDateTimeRadio').get_by_role('radio', name='timeFrameLastDateTimeRadio')
         self.time_config_box = self.page.get_by_test_id("MuiInputBase-input MuiInput-input")    # time box hours or days
         #self.time_hours = self.page.get_by_label("mui-component-select-timeFrameLastDateTimeSelect")    # hours box
         self.time_dropDown = self.page.get_by_test_id("MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input")     # hours/days dropdown, before select

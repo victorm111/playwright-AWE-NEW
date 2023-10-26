@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="init commit">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/CaptureVerification.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/CaptureVerification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/CaptureVerification_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/CaptureVerification_results.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/SearchAndReplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/SearchAndReplay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runConfiguration/pytest in playwright-AWE.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/runConfiguration/pytest in playwright-AWE.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_CaptureVerification.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_CaptureVerification.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698060650606</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="init commit">
+      <option name="closed" value="true" />
+      <created>1698335917943</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1698335917943</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -298,12 +297,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pages/CaptureVerification_results.py</url>
-          <line>130</line>
+          <line>133</line>
           <option name="timeStamp" value="163" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pages/CaptureVerification_results.py</url>
-          <line>115</line>
+          <line>118</line>
           <option name="timeStamp" value="164" />
         </line-breakpoint>
       </breakpoints>
