@@ -75,12 +75,19 @@ def test_CaptureVerification(browser: Browser, test_read_config_file, load_conte
     #CaptureVerificationResults_page.context.tracing.start(sources=True, screenshots=True, snapshots=True)
     LOGGER.debug('test_CaptureVerification: load results page')
     CaptureVerificationResults_page.load()
-    # test for 1 day of calls, set up initially as default search window
+    # Check side menu items are visible, indicates page loaded
+    dump_html = CaptureVerificationResults_page.checkLeftMenuAvailable()
+
+    fname = './output/html_dump_beforeSetTimeInterval.html'
+    #dump_html = CaptureVerificationResults_page.page.content()
+    with open(fname, "w", encoding="utf-8") as f:
+        f.write(dump_html)
 
     # configure time interval
     CaptureVerificationResults_page.config_timeInterval()
+
     # if call issues found means call errors, flag as test fail
-    call_issues = CaptureVerificationResults_page.check_recordings_found(time_out=60000)
+    call_issues = CaptureVerificationResults_page.check_recordings_found(time_out=0)
     # null returned if timeout or exception retrieving issues table
     if call_issues != 'null':
         LOGGER.debug('test_CaptureVerification: call issues found, downloadCSV')

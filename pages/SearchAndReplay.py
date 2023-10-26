@@ -39,6 +39,8 @@ class WFOSearchAndReplayPage:
         LOGGER.info('WFOSearchAndReplayPage: init class')
         self.context='null'
         self.context = browser.new_context(storage_state=load_context, no_viewport=True)
+        self.context.set_default_timeout(timeout=60000)         # default timeout for locators
+
         assert(load_context != 'null')
         self.page = self.context.new_page()
 

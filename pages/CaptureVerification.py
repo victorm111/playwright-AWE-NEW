@@ -40,6 +40,7 @@ class WFOCaptureVerificationPage():
         #self.context = 'null'
         assert(load_context != 'null')
         self.context = browser.new_context(storage_state=load_context, no_viewport=True)
+        self.context.set_default_timeout(timeout=60000)         # default timeout for locators
 
         self.page = self.context.new_page()
         # playwright used as fixture
@@ -50,12 +51,16 @@ class WFOCaptureVerificationPage():
         self.author = 'VW'
         self.URL = test_read_config_file['urls']['AWE_dash']
         self.dropDownArrow_selector = '#as-navdrawer-arrow-btnInnerEl'
-        self.Issues_selector = 'AVPlus_Module->AVPlus_Module_Menu->AVPlus_Module_Menu_Sub_Issues'
-        self.CaptVerif_selector = 'AVPlus_Module'
+        self.Issues_selector = "AVPlus_Module->AVPlus_Module_Menu->AVPlus_Module_Menu_Sub_Issues"
 
-        self.CaptVerif = self.page.get_by_test_id(self.CaptVerif_selector)
+        self.CaptVerif_selector = 'Automated Verification'
+
+        self.CaptVerif = self.page.get_by_label("Automated Verification")
+        #self.CaptVerif = self.page.get_by_test_id(self.CaptVerif_selector)
         self.dropDownArrow = self.page.locator(self.dropDownArrow_selector)
         self.Issues = self.page.get_by_test_id(self.Issues_selector)
+        #self.Issues = self.page.get_by_label("Issues")
+        #self.Issues = self.page.get_by_text("Issues")
 
         def __repr__(self):
             class_name = type(self).__name__

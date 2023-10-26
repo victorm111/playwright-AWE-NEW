@@ -25,8 +25,9 @@ install Playwright >>install browsers
 
 
 ## Running the tests
-
+# PyCharm option:
 -n 1 --count=1 (-n runs on number CPUs, --count number of tests to run one after another
+pytest.ini -n 3 runs on 3 procs, can run tests in parallel
 
 ### Break down into end to end tests
 

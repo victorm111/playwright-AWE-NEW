@@ -44,6 +44,7 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
         super(WFOSearchReplayResultsPage, self).__init__(browser, test_read_config_file, load_context, playwright)
         assert(load_context != 'null')
         self.context = browser.new_context(storage_state=load_context, no_viewport=True)
+        self.context.set_default_timeout(timeout=60000)         # default timeout for locators
 
         self.callsRetrieved = self.page.get_by_text('Retrieved')
         self.NoCallsRetrieved = self.page.get_by_text('No Results')
