@@ -89,6 +89,7 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         self.CaptVerif = self.page.get_by_label(self.CaptVerif_selector)
 
     def load(self) -> None:
+        """load the capture verification results page"""
         LOGGER.info('WFOCaptureVerificationResultsPage: load method')
 
         self.page.goto(self.URL)
@@ -104,11 +105,12 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         return
 
     def checkLeftMenuAvailable(self) -> str:
-
+        """confirm left hand side menu available"""
         self.leftMenu.wait_for()
         return self.page.content()
 
     def config_timeInterval(self) -> None:
+        """configure time interval"""
         # steps select 'time frame' in lhs menu
         # select 'last'
         # select 24 hours
@@ -147,7 +149,7 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         return
 
     def check_recordings_found(self, time_out) -> str:
-
+        """look for calls found"""
         return_value = 'none'
 
         try:
@@ -166,7 +168,7 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
             return return_value
 
     def downloadCSVStart(self) -> str:
-
+        """download results csv"""
         LOGGER.debug('WFOCaptureVerificationResultsPage:: downloadCSVStart start')
         download = 'False'
         # Start waiting for the download
