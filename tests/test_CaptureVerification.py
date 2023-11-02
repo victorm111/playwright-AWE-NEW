@@ -76,6 +76,7 @@ def test_CaptureVerification(browser: Browser, test_read_config_file, load_conte
     LOGGER.debug('test_CaptureVerification: load results page')
     CaptureVerificationResults_page.load()
     # Check side menu items are visible, indicates page loaded
+    # need check for page selector
     dump_html = CaptureVerificationResults_page.checkLeftMenuAvailable()
 
     fname = './output/html_dump_beforeSetTimeInterval.html'

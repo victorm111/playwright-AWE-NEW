@@ -4,6 +4,7 @@ import sys
 import time as time
 from datetime import date
 import re
+from bs4 import BeautifulSoup
 
 import playwright
 from dotenv import load_dotenv
@@ -49,13 +50,16 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
 
         Playwright.selectors.set_test_id_attribute("class")
         self.page = self.context.new_page()  # first tab page in context
+
+
         self.leftMenu = self.page.get_by_text("OrganizationTime FrameData SourcesSeverityIssues")
         self.time_frame_select = self.page.get_by_test_id("MuiButtonBase-root MuiIconButton-root icon-time-picker verint-icon-button verint-icon-medium") # lhs menu
         #self.time_select = self.page.get_by_role("heading", name = "Time Frame")
         # iframe locator for set time lhs menu, used 'last' radio button selector
-        self.time_radio_iframe = self.page.frame_locator('timeFrameLastDateTimeRadio')
-        self.time_radio = self.page.get_by_role('radio', name='timeFrameLastDateTimeRadio')
-        self.time_radio_iframe_all=self.page.frame_locator('timeFrameLastDateTimeRadio').get_by_role('radio', name='timeFrameLastDateTimeRadio')
+
+        self.time_radio_last = self.page.get_by_role("radio", name="timeFrameLastDateTimeRadio", exact=True)
+        self.time_radio_from = self.page.get_by_role("radio", name="timeFrameRangeDateTimeRadio", exact=True)
+
         self.time_config_box = self.page.get_by_test_id("MuiInputBase-input MuiInput-input")    # time box hours or days
         #self.time_hours = self.page.get_by_label("mui-component-select-timeFrameLastDateTimeSelect")    # hours box
         self.time_dropDown = self.page.get_by_test_id("MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input")     # hours/days dropdown, before select
@@ -71,7 +75,7 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         self.foundCalls = self.page.get_by_text(re.compile(r'Found\s\d+\scalls'))
         self.DownloadCSV = self.page.get_by_text("Export to CSV", exact=True)
         self.context = browser.new_context(storage_state=load_context, no_viewport=True)
-        self.context.set_default_timeout(timeout=60000)         # default timeout for locators
+        self.context.set_default_timeout(timeout=40000)         # default timeout for locators
 
         self.NoCallsRetrieved = self.page.get_by_text('No call issues to display')
         self.foundCalls = self.page.get_by_text(re.compile(r'Found\s\d+\scalls'))
@@ -105,7 +109,7 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         return
 
     def checkLeftMenuAvailable(self) -> str:
-        """confirm left hand side menu available"""
+        """confirm left hand side menu available including org, datasource etc. """
         self.leftMenu.wait_for()
         return self.page.content()
 
@@ -115,13 +119,18 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         # select 'last'
         # select 24 hours
         # hit apply
-        #Playwright.selectors.set_test_id_attribute("data-testid")
-        #self.time_frame_select.wait_for()
+        # check which radio button is active, turns out non-selected button has 'checked' in the element
+
+        # query radio buttons
 
         self.time_frame_select.click()
         page_content = self.page.content()
+        html = BeautifulSoup(page_content, 'html5lib')
+        left_timeframe_menu_last_radio=html.find('input', attrs = {'name':'timeFrameLastDateTimeRadio'})
         # select and check the 'last' radio button
-        self.time_radio.check()
+        # check if checked
+
+        self.time_radio_last.check()
         # assert and verify the checked state
         self.time_radio.is_checked() is True
         #self.time_radio.wait_for()
