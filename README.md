@@ -20,6 +20,14 @@ Give examples
 ### Installing
 
 install PyCharm
+
+$ pip3 install playwright
+$ pip3 install pytest
+$ pip3 install pytest-playwright
+
+$ pip3 install -r requirements.txt
+$ playwright install
+
 install Playwright >>install browsers
 
 

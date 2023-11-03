@@ -9,10 +9,11 @@
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/output" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.12 (AWE-Playwright-Nov2023)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">
+    <option name="requirementsPath" value="C:\Users\victorm\OneDrive - Avaya\Documents\PycharmProjects\AWE-Playwright-Nov2023\requirements.txt" />
     <option name="removeUnused" value="true" />
   </component>
   <component name="TestRunnerService">

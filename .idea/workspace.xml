@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="init commit">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/playwright-AWE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/playwright-AWE.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/pytest_in_playwright_AWE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/pytest_in_AWE_Playwright_Nov2023.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/CaptureVerification_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/CaptureVerification_results.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_CaptureVerification.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_CaptureVerification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,18 +50,18 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;auto.test.manager.delay&quot;: &quot;5000&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;CaptVerif-selectTime&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/victorm/PycharmProjects/playwright-AWE/pages&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "auto.test.manager.delay": "5000",
+    "git-widget-placeholder": "CaptVerif-selectTime",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/victorm/OneDrive - Avaya/Documents/PycharmProjects/AWE-Playwright-Nov2023/requirements.txt",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\victorm\PycharmProjects\playwright-AWE\pages" />
@@ -308,16 +311,5 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="init commit" />
     <option name="LAST_COMMIT_MESSAGE" value="init commit" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pages/CaptureVerification_results.py</url>
-          <line>128</line>
-          <option name="timeStamp" value="170" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

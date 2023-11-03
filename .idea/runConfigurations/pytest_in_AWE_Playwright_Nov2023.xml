@@ -1,14 +1,13 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="pytest in playwright-AWE" type="tests" factoryName="py.test" singleton="true" nameIsGenerated="true">
+  <configuration default="false" name="pytest in AWE-Playwright-Nov2023" type="tests" factoryName="py.test" singleton="true" nameIsGenerated="true">
     <module name="playwright-AWE" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
-    <option name="SDK_HOME" value="C:\Users\victorm\AppData\Local\Programs\Python\Python311\python.exe" />
-    <option name="SDK_NAME" value="Python 3.11" />
+    <option name="SDK_HOME" value="" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-    <option name="IS_MODULE_SDK" value="false" />
+    <option name="IS_MODULE_SDK" value="true" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
-    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="false" />
     <EXTENSION ID="net.ashald.envfile">
       <option name="IS_ENABLED" value="false" />
       <option name="IS_SUBST" value="false" />
