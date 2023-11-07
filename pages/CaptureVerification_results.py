@@ -44,13 +44,12 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
 
         super(WFOCaptureVerificationResultsPage, self).__init__(browser, test_read_config_file, load_context, Playwright)
 
-        #self.context.close()    # from parent
+        self.context.close()    # from parent
         assert(load_context != 'null')
-
-
-        Playwright.selectors.set_test_id_attribute("class")
+        self.context = browser.new_context(storage_state=load_context, no_viewport=True)
+        self.context.set_default_timeout(timeout=40000)         # default timeout for locators
         self.page = self.context.new_page()  # first tab page in context
-
+        Playwright.selectors.set_test_id_attribute("class")
 
         self.leftMenu = self.page.get_by_text("OrganizationTime FrameData SourcesSeverityIssues")
         self.time_frame_select = self.page.get_by_test_id("MuiButtonBase-root MuiIconButton-root icon-time-picker verint-icon-button verint-icon-medium") # lhs menu
@@ -58,7 +57,11 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         # iframe locator for set time lhs menu, used 'last' radio button selector
 
         self.time_radio_last = self.page.get_by_role("radio", name="timeFrameLastDateTimeRadio", exact=True)
+        self.time_radio_last_2 = self.page.get_by_test_id("verint-regular-label last-label")    # to set
+        #self.time_radio_last_3 = self.page.get_by_label(text='mui-component-select-timeFrameLastDateTimeSelect')  # to read if disabled, aria-disabled=true
+
         self.time_radio_from = self.page.get_by_role("radio", name="timeFrameRangeDateTimeRadio", exact=True)
+        self.time_radio_from_2 = self.page.get_by_test_id("verint-regular-label datetime-label").get_by_text(text='From')
 
         self.time_config_box = self.page.get_by_test_id("MuiInputBase-input MuiInput-input")    # time box hours or days
         #self.time_hours = self.page.get_by_label("mui-component-select-timeFrameLastDateTimeSelect")    # hours box
@@ -68,14 +71,15 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
             "MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button")
 
         #self.time_apply = self.page.get_by_role("button", name="Apply")
-        self.time_apply = self.page.get_by_test_id("MuiButtonBase-root MuiButton-root MuiButton-text verint-btn-primary")
+        self.time_apply_enabled = self.page.get_by_test_id("MuiButtonBase-root MuiButton-root MuiButton-text verint-btn-primary")
+        self.time_apply_disabled = self.page.get_by_test_id("MuiButtonBase-root MuiButton-root MuiButton-text verint-btn-primary Mui-disabled Mui-disabled")
+
         self.IssuesTable = self.page.get_by_test_id('avpRowContainer issuesTableRow')
 
         self.NoCallsRetrieved = self.page.get_by_text('No call issues to display')
         self.foundCalls = self.page.get_by_text(re.compile(r'Found\s\d+\scalls'))
         self.DownloadCSV = self.page.get_by_text("Export to CSV", exact=True)
-        self.context = browser.new_context(storage_state=load_context, no_viewport=True)
-        self.context.set_default_timeout(timeout=40000)         # default timeout for locators
+
 
         self.NoCallsRetrieved = self.page.get_by_text('No call issues to display')
         self.foundCalls = self.page.get_by_text(re.compile(r'Found\s\d+\scalls'))
@@ -87,8 +91,6 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         #self.Issues = self.page.get_by_text(self.Issues_selector)
         #self.Issues =  self.page.locator(self.Issues_selector_1).filter(has=self.page.get_by_label(self.Issues_selector))
         self.dropDownArrow = self.page.locator(self.dropDownArrow_selector)
-
-
 
         self.CaptVerif = self.page.get_by_label(self.CaptVerif_selector)
 
@@ -123,37 +125,46 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
 
         # query radio buttons
 
-        self.time_frame_select.click()
+
         page_content = self.page.content()
-        html = BeautifulSoup(page_content, 'html5lib')
+        html = BeautifulSoup(page_content, 'html.parser')
         left_timeframe_menu_last_radio=html.find('input', attrs = {'name':'timeFrameLastDateTimeRadio'})
         # select and check the 'last' radio button
         # check if checked
+        self.time_frame_select.click()
+        # check if 'from-to' section disabled
+        from_disabled=self.time_radio_from_2.get_attribute(name='aria-disabled', timeout=1000)
+        #check if 'last' section enabled
+        last_disabled=self.time_radio_last_2.get_attribute(name='aria-disabled', timeout=1000)
 
-        self.time_radio_last.check()
+        # click both buttons, check if apply available for click
+        self.time_radio_from_2.click()
+        # check if apply button disabled, can determine which radio button active
+        from_disabled = self.time_apply_disabled.is_disabled()
+        self.time_radio_last_2.click()
+        last_disabled=self.time_apply_disabled.is_disabled()
+        # if from_disabled then continue with 24 hours in time box
+        # otherwise need to toggle
+
+
         # assert and verify the checked state
-        self.time_radio.is_checked() is True
+        #self.time_radio.is_checked() is True
         #self.time_radio.wait_for()
         #self.time_radio.click()
         #self.time_config_box.wait_for()        # clear input
         # read text content of text box
         box_text = self.time_config_box.get_attribute('value')
 
-        toggle_complete = False
-        loop_count=0
-
-        while loop_count<2:
-            self.time_dropDown.click()      # enable drop down to prepare selection
-            # toggle between hours and days to activate 'apply' button
-            box_test_1 = self.time_dropDown_select.get_attribute('value')
-            if box_test_1 == 'Hours':
-                self.time_dropDown_select.select_option("Days")
-            elif box_test_1 == 'Days':
-                self.time_dropDown_select.select_option("Hours")
-            self.time_apply.click()     # hit apply button
-            self.time_config_box.clear()
-            self.time_config_box.fill("24")  # inject 24 hours
-            loop_count += 1
+        self.time_dropDown.click()      # enable drop down to prepare selection
+        # toggle between hours and days to activate 'apply' button
+        box_test_1 = self.time_dropDown_select.get_attribute('value')
+        if box_test_1 == 'Hours':
+            self.time_dropDown_select.select_option("Days")
+        elif box_test_1 == 'Days':
+            self.time_dropDown_select.select_option("Hours")
+        self.time_apply.click()     # hit apply button
+        self.time_config_box.clear()
+        self.time_config_box.fill("24")  # inject 24 hours
             
         return
 

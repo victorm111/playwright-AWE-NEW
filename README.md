@@ -19,6 +19,15 @@ Give examples
 
 ### Installing
 
+add https interface for pip package updates, add pip.ini file with:
+
+# for system-wide configuration file
+[global]
+trusted-host = pypi.python.org
+               pypi.org
+               raw.githubusercontent.com
+               files.pythonhosted.org
+
 install PyCharm
 
 $ pip3 install playwright
