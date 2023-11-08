@@ -28,6 +28,8 @@ trusted-host = pypi.python.org
                raw.githubusercontent.com
                files.pythonhosted.org
 
+
+install steps:
 install PyCharm
 
 $ pip3 install playwright
@@ -39,6 +41,21 @@ $ playwright install
 
 install Playwright >>install browsers
 
+import project
+pip install -r requirements.txt
+
+## project layout
+config: includes input config filr
+logs: incl pytest logs
+output: additional logs and output files
+pages: page object model files, model webpages
+report: html report 
+tests: test code
+
+.env: env file
+conftest.py : global routines
+pytest.ini: pytest init file
+requirements.txt: required packages
 
 
 ## Running the tests
