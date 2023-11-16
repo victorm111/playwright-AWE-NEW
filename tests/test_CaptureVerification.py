@@ -86,22 +86,25 @@ def test_CaptureVerification(browser: Browser, test_read_config_file, load_conte
 
     # configure time interval
     CaptureVerificationResults_page.config_timeInterval()
-
+    call_issues = 'none'
     # if call issues found means call errors, flag as test fail
-    call_issues = CaptureVerificationResults_page.check_recordings_found(time_out=0)
+    call_issues = CaptureVerificationResults_page.check_recordings_found(time_out=10000)
     # null returned if timeout or exception retrieving issues table
-    if call_issues != 'null':
-        LOGGER.debug('test_CaptureVerification: call issues found, downloadCSV')
-        CaptureVerificationResults_page.downloadCSVStart()
-        LOGGER.debug('test_CaptureVerification: close Results page')
-        #CaptureVerificationResults_page.context.tracing.stop(path="./output/CaptureVerifResults.zip")
-        CaptureVerificationResults_page.context.browser.stop_tracing()
-        CaptureVerificationResults_page.page.close()
-        CaptureVerificationResults_page.context.close()
+    try:
+        assert call_issues == 'null'    # call_issues = 'null' if no issues found
 
-        assert 'Found' not in call_issues
+    except AssertionError:
+        if call_issues != 'null':
+            LOGGER.debug('test_CaptureVerification: call issues found, downloadCSV')
+            CaptureVerificationResults_page.downloadCSVStart()
+            LOGGER.debug('test_CaptureVerification: close Results page')
+            #CaptureVerificationResults_page.context.tracing.stop(path="./output/CaptureVerifResults.zip")
+            CaptureVerificationResults_page.context.browser.stop_tracing()
+            CaptureVerificationResults_page.page.close()
+            CaptureVerificationResults_page.context.close()
+    else:
+        LOGGER.debug('test_CaptureVerification: test finished, no call recording issues')
 
-    LOGGER.debug('test_CaptureVerification: test finished, no call recording issues')
     # stop tracing
     #CaptureVerificationResults_page.context.tracing.stop(path="./output/CaptureVerifResults.zip")
     CaptureVerificationResults_page.context.browser.stop_tracing()

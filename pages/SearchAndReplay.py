@@ -37,11 +37,10 @@ class WFOSearchAndReplayPage:
     def __init__(self, browser: Browser, test_read_config_file: object, load_context: object, Playwright: playwright) -> None:
 
         LOGGER.info('WFOSearchAndReplayPage: init class')
-        self.context='null'
-        self.context = browser.new_context(storage_state=load_context, no_viewport=True)
-        self.context.set_default_timeout(timeout=60000)         # default timeout for locators
-
+        #self.context='null'
         assert(load_context != 'null')
+        self.context = browser.new_context(storage_state=load_context, no_viewport=True)
+        self.context.set_default_timeout(timeout=30000)         # default timeout for locators
         self.page = self.context.new_page()
 
         # add custom locator 'tabid' for 'Search' submenu
@@ -60,11 +59,6 @@ class WFOSearchAndReplayPage:
 
         def __str__(self):
             return self.title
-
-    def set_context(self, load_context) -> None:
-        self.page.context = self.page.context.browser.new_context(storage_state=load_context)
-        return
-
 
     def load(self) -> None:
         LOGGER.info('WFOSearchAndReplayPage: load method, open search and replay page')

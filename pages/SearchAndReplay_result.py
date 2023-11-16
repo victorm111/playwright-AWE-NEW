@@ -67,30 +67,43 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
     def populate_searchTextBox(self, days) -> None:
         # edit textbox to change to 1d search
         self.SearchTextBox.fill(days)
+        LOGGER.debug('WFOSearchAndReplayResultsPage: populate_searchTextBox() finished')
         return
 
 
     def clickSearch(self) -> None:
         # click search icon with updated 1d search window
         self.SearchInit.click()
+        LOGGER.debug('WFOSearchAndReplayResultsPage: clickSearch() finished')
         return
 
 
     def check_recordings_found(self) -> str:
 
+        result = 'none'
+
         try:
-            self.SearchResults.wait_for(timeout=30000)
+            self.SearchResults.wait_for(timeout=10000)
         except PlaywrightTimeoutError:
-            return 'null'
+            result = 'null'
         else:
-            return self.callsRetrieved.text_content()
+            result = self.callsRetrieved.text_content()
+        finally:
+            self.page.screenshot(path='./output/screenshot5.png')
+            LOGGER.debug('WFOSearchAndReplayResultsPage: clickSearch() finished')
+            return result
 
     def check_no_recordings_found(self) -> bool:
 
-        no_recordings = 'true'
+        LOGGER.debug('WFOSearchAndReplayResultsPage: check_no_recordings_found()')
+        result = 'null'
+
         try:
             self.NoCallsRetrieved.wait_for(timeout=30000)
         except PlaywrightTimeoutError:
-            return False
+            result = False
         else:
-            return True
+            result = True
+        finally:
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_no_recordings_found() finished result', result)
+            return result

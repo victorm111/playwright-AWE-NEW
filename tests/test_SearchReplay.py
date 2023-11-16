@@ -57,8 +57,8 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
 
     # set browser context from saved login
     LOGGER.debug('test_SearchReplay: load previous context')
-    assert(load_context != 'null')
-    SearchReplay_page.set_context(load_context)
+    #assert(load_context != 'null')
+    #SearchReplay_page.set_context(load_context)
     LOGGER.debug('test_SearchReplay: load()')
     SearchReplay_page.load()
     # assert search menu found
@@ -84,6 +84,7 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
     # browser.stop_tracing()
 
     assert('Retrieved' in SearchReplayResults_page.check_recordings_found())
+
     LOGGER.debug('test_SearchReplay: calls found: ' + SearchReplayResults_page.check_recordings_found())
     assert (SearchReplayResults_page.check_no_recordings_found() == False)
 

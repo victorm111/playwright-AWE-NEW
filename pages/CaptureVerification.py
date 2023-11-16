@@ -40,7 +40,7 @@ class WFOCaptureVerificationPage():
         #self.context = 'null'
         assert(load_context != 'null')
         self.context = browser.new_context(storage_state=load_context, no_viewport=True)
-        self.context.set_default_timeout(timeout=60000)         # default timeout for locators
+        self.context.set_default_timeout(timeout=30000)         # default timeout for locators
 
         self.page = self.context.new_page()
         # playwright used as fixture
