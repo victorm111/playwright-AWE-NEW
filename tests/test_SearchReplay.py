@@ -83,11 +83,19 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
     # stop tracing
     # browser.stop_tracing()
 
-    assert('Retrieved' in SearchReplayResults_page.check_recordings_found())
+    # delete csv if exists, create new search and replay csv
+    output_path = './output/SearchReplay-CallsFound.csv'
+    if os.path.exists(output_path):
+        os.remove(output_path)
 
-    LOGGER.debug('test_SearchReplay: calls found: ' + SearchReplayResults_page.check_recordings_found())
+    result, soup, number_calls = SearchReplayResults_page.check_recordings_found()
+    assert 'Retrieved' in result
+    #assert('Retrieved' in SearchReplayResults_page.check_recordings_found())
+
+    LOGGER.info('test_SearchReplay: recorded calls found in Search and Replay')
+    print(f'test_SearchReplay: recorded calls found in Search and Replay:   {number_calls}')
     assert (SearchReplayResults_page.check_no_recordings_found() == False)
 
 
-    LOGGER.debug('test_SearchReplay: test finished')
+    LOGGER.info('test_SearchReplay: test finished')
 
