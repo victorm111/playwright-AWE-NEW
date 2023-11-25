@@ -96,6 +96,7 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
     print(f'test_SearchReplay: recorded calls found in Search and Replay:   {number_calls}')
     assert (SearchReplayResults_page.check_no_recordings_found() == False)
 
-
+    SearchReplayResults_page.page.close()
+    SearchReplayResults_page.context.close()
     LOGGER.info('test_SearchReplay: test finished')
 

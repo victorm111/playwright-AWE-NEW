@@ -47,6 +47,7 @@ class WFOCaptureVerificationPage():
         # add custom locator 'tabid' for 'Issues' submenu
         Playwright.selectors.set_test_id_attribute("tabid")
 
+
         self.title = 'WFO Capture Verification page'
         self.author = 'VW'
         self.URL = test_read_config_file['urls']['AWE_dash']

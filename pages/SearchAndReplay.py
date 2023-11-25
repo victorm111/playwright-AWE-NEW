@@ -6,8 +6,10 @@ import time as time
 from datetime import date
 
 import playwright
+import playwright.async_api
 from dotenv import load_dotenv
-from playwright.sync_api import Browser, Playwright
+from playwright.sync_api import Browser, TimeoutError as PlaywrightTimeoutError, expect, Page
+
 
 # load env variables from .env in root dir
 load_dotenv()
@@ -43,15 +45,20 @@ class WFOSearchAndReplayPage:
         self.context.set_default_timeout(timeout=30000)         # default timeout for locators
         self.page = self.context.new_page()
 
-        # add custom locator 'tabid' for 'Search' submenu
+        # add custom locator 'class' for 'Search' submenu
+        #Playwright.selectors.set_test_id_attribute("tabid")
         Playwright.selectors.set_test_id_attribute("tabid")
+
         #playwright.sync_api.Selectors.set_test_id_attribute("tabid")
         self.title = 'WFO search and replay page'
         self.author = 'VW'
         self.URL = test_read_config_file['urls']['AWE_dash']
         self.dropDownArrow = self.page.locator('#as-navdrawer-arrow-btnInnerEl')
+        self.dropDownArrow_selector = '#as-navdrawer-arrow-btnInnerEl'
         self.Interactions = self.page.locator('#INTERACTION')
+        self.Interactions_selector = '#INTERACTION'
         self.Search = self.page.get_by_test_id('INTERACTION->interactions_tab->search_tab')
+        self.Search_selector = 'INTERACTION->interactions_tab->search_tab'
 
         def __repr__(self):
             class_name = type(self).__name__

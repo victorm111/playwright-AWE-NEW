@@ -4,16 +4,15 @@ import sys
 import time as time
 from datetime import date
 from typing import Tuple, Any
+import pytest
 
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
-
-
-
+import playwright
 
 from dotenv import load_dotenv
-from playwright.sync_api import Browser, TimeoutError as PlaywrightTimeoutError, Playwright
+from playwright.sync_api import Browser, TimeoutError as PlaywrightTimeoutError, expect
 
 from pages.SearchAndReplay import WFOSearchAndReplayPage
 
@@ -44,20 +43,30 @@ current_time = time.strftime("%H_%M_%S", t)
 # Add a class definition for the results page object
 class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
 
-    def __init__(self, browser: Browser, test_read_config_file, load_context, playwright: Playwright) -> None:
+    def __init__(self, browser: Browser, test_read_config_file, load_context, Playwright: playwright) -> None:
 
         LOGGER.debug('WFOSearchReplayResultsPage: init class')
 
-        super(WFOSearchReplayResultsPage, self).__init__(browser, test_read_config_file, load_context, playwright)
+        super(WFOSearchReplayResultsPage, self).__init__(browser, test_read_config_file, load_context, Playwright)
+        self.context.close()
         assert(load_context != 'null')
         self.context = browser.new_context(storage_state=load_context, no_viewport=True)
-        self.context.set_default_timeout(timeout=60000)         # default timeout for locators
+        self.context.set_default_timeout(timeout=30000)  # default timeout for locators
+        self.page = self.context.new_page()  # first tab page in context
+        Playwright.selectors.set_test_id_attribute("tabid")
 
         self.callsRetrieved = self.page.get_by_text('Retrieved')
         self.NoCallsRetrieved = self.page.get_by_text('No Results')
         self.SearchTextBox = self.page.get_by_role("textbox", name="From the Last:")
         self.SearchInit = self.page.get_by_label("Search", exact=True)
         self.SearchResults = self.page.locator('#qm_SearchResultsWorkspace-title')
+        self.firstCell = self.page.locator("xpath=//tr/*[@class='x-grid-cell x-grid-td x-grid-cell-duration x-unselectable']")
+
+
+        # update parent locator
+        self.dropDownArrow = self.page.locator(self.dropDownArrow_selector)
+        self.Interactions = self.page.locator(self.Interactions_selector)
+        self.Search = self.page.get_by_test_id(self.Search_selector)
 
     def load(self) -> None:
         LOGGER.info('WFOSearchAndReplayResultsPage: load method, open search and replay results page')
@@ -118,28 +127,42 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
             LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), start create df')
             number_calls = re.search(r'\d+', result).group()
             counted_calls = 0       # calls counted scrolling through viewport
+            count = 0
+            page_scrolled = 0
+
             while counted_calls < int(number_calls):
                 # pull each row, each row is a separate table
                 LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), pull soup')
                 tables = soup.find_all('table', class_='x-grid-item', role='presentation')
+
                 for table in tables:
-                    #print(table.tbody.tr.td['data-columnid'])
+                    count+=1
+
                     df = pd.read_html(str(table))
                     if table.tbody.tr['class'] == ['x-grid-row']:     # write to csv if search and replay row
-                        #df.drop([1])    # drop unreq
-                        # append call to all calls df
                         LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), store table to df')
-                        df_allCalls = pd.concat([df_allCalls, df[0]])
-                        df_dropDupAllCalls = df_allCalls.drop_duplicates()  # drop duplicates as scrolls down page
-                        #counted_calls = len(df_dropDupAllCalls)
-                        counted_calls = df_dropDupAllCalls.shape[0]
+                        df_allCalls = pd.concat([df_allCalls, df[0].iloc[[0]]])
+                        df_allCalls = df_allCalls.drop_duplicates()
+                        counted_calls = len(df_allCalls)
 
-                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), df construct page down')
+                count=0             # reset count for new page
+                page_scrolled+=1
+                self.firstCell.first.focus(timeout=1000)              # select first instance in time column , required before page down
+                self.page.keyboard.press('PageDown')
+                self.page.keyboard.press('PageDown')
 
-                self.page.keyboard.press('PageDown')           # drop down page
-                        # pull table column headers
-                        # col_header = table.tbody.tr.td['data-columnid']
+                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), construct new soup after page down')
+                # re-dump to beautiful soup after page down
+                page_content = self.page.content()
+                # soup = 'null'
+                soup = BeautifulSoup(page_content, 'html.parser')
 
+                print(
+                    f'WFOSearchAndReplayResultsPage: check_recordings_found()  page down, page no.: ', {page_scrolled}, {_scroll_count})
+
+
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() dump csv')
+            df_dropDupAllCalls = df_allCalls.drop_duplicates()  # drop duplicates as scrolls down page
 
             df_dropDupAllCalls.to_csv('./output/SearchReplay-CallsFound.csv', mode='a')
 
