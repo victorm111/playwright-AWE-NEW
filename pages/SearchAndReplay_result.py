@@ -106,8 +106,6 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
         df_dropDupAllCalls = pd.DataFrame()
         df = pd.DataFrame()
 
-        #regex = re.compile('.*x-grid-item*.')
-
         try:
             self.SearchResults.wait_for(timeout=10000)
         except PlaywrightTimeoutError:
@@ -116,14 +114,8 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
             result = self.callsRetrieved.text_content()
             # dump to beautiful soup
             page_content = self.page.content()
-            #soup = 'null'
+
             soup = BeautifulSoup(page_content, 'html.parser')
-            #LOGGER.debug('+++++++++ WFOSearchAndReplayResultsPage: clickSearch() BS table start +++++++++++++++')
-            #print(soup.prettify(formatter='html'))
-            #LOGGER.debug('+++++++++ WFOSearchAndReplayResultsPage: clickSearch() BS table end +++++++++++++++')
-            #table = soup.find('table', attrs={'class': 'subs noBorders evenRows'}, recursive=True)
-
-
 
             LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), start create df')
             number_calls = re.search(r'\d+', result).group()
@@ -158,10 +150,6 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
                 # soup = 'null'
                 soup = BeautifulSoup(page_content, 'html.parser')
 
-                print(
-                    f'WFOSearchAndReplayResultsPage: check_recordings_found()  page down, page no.: ', {page_scrolled}, {_scroll_count})
-
-
             LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() dump csv')
             df_dropDupAllCalls = df_allCalls.drop_duplicates()  # drop duplicates as scrolls down page
 
@@ -170,7 +158,8 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
         finally:
             self.page.screenshot(path='./output/screenshot5.png')
 
-            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() finished')
+            print(f'WFOSearchAndReplayResultsPage: check_recordings_found(), *** results:  {result} {df_dropDupAllCalls.head(n=3)} {number_calls}')
+            LOGGER.info('WFOSearchAndReplayResultsPage: check_recordings_found() finished')
             return result, df_dropDupAllCalls, number_calls
 
     def check_no_recordings_found(self) -> bool:
