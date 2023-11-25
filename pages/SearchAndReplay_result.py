@@ -94,13 +94,17 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
         return
 
 
-    def check_recordings_found(self) -> tuple[str | Any, BeautifulSoup, Any | str]:
-        """checks recordings are available, returns soup"""
+    def check_recordings_found(self) -> tuple[str | Any, Any , Any | str]:
+        """checks recordings are available, returns df and output csv"""
 
         LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() start')
         result = 'none'
         soup = 'null'
         number_calls = 'null'
+        # create empty dataframe to store calls
+        df_allCalls = pd.DataFrame()
+        df_dropDupAllCalls = pd.DataFrame()
+        df = pd.DataFrame()
 
         #regex = re.compile('.*x-grid-item*.')
 
@@ -119,10 +123,7 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
             #LOGGER.debug('+++++++++ WFOSearchAndReplayResultsPage: clickSearch() BS table end +++++++++++++++')
             #table = soup.find('table', attrs={'class': 'subs noBorders evenRows'}, recursive=True)
 
-            #create empty dataframe to store calls
-            df_allCalls = pd.DataFrame()
-            df_dropDupAllCalls = pd.DataFrame()
-            df = pd.DataFrame()
+
 
             LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), start create df')
             number_calls = re.search(r'\d+', result).group()
@@ -170,7 +171,7 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
             self.page.screenshot(path='./output/screenshot5.png')
 
             LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() finished')
-            return result, soup, number_calls
+            return result, df_dropDupAllCalls, number_calls
 
     def check_no_recordings_found(self) -> bool:
 

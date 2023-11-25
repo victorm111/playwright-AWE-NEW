@@ -88,7 +88,7 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
     if os.path.exists(output_path):
         os.remove(output_path)
 
-    result, soup, number_calls = SearchReplayResults_page.check_recordings_found()
+    result, calls_df, number_calls = SearchReplayResults_page.check_recordings_found()
     assert 'Retrieved' in result
     #assert('Retrieved' in SearchReplayResults_page.check_recordings_found())
 
