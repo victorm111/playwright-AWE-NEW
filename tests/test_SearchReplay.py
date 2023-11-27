@@ -44,7 +44,11 @@ LOGGER = logging.getLogger(__name__)
 
 #@pytest.mark.skip(reason="no way of currently testing this")
 def test_SearchReplay(browser: Browser, test_read_config_file, load_context, playwright) -> None:
+    """test for calls available in search and replay, return calls df if available"""
 
+    result = 'null'
+    calls_df = 'null'
+    number_calls = 'null'
 
     LOGGER.debug('test_SearchReplay: start ...')
     # Start tracing before navigating a page.
@@ -89,7 +93,8 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
         os.remove(output_path)
 
     result, calls_df, number_calls = SearchReplayResults_page.check_recordings_found()
-    assert 'Retrieved' in result
+
+    assert 'Retrieved' in result, 'no calls retrieved in search and replay'
     #assert('Retrieved' in SearchReplayResults_page.check_recordings_found())
 
     LOGGER.info('test_SearchReplay: recorded calls found in Search and Replay')

@@ -97,21 +97,23 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
     def check_recordings_found(self) -> tuple[str | Any, Any , Any | str]:
         """checks recordings are available, returns df and output csv"""
 
-        LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() start')
-        result = 'none'
+        result = 'null'
         soup = 'null'
         number_calls = 'null'
+
+        LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() start')
+
         # create empty dataframe to store calls
         df_allCalls = pd.DataFrame()
         df_dropDupAllCalls = pd.DataFrame()
         df = pd.DataFrame()
 
         try:
-            self.SearchResults.wait_for(timeout=10000)
+            self.SearchResults.wait_for(timeout=10000)      # check on results page
+            result = self.callsRetrieved.text_content(timeout=1000)
         except PlaywrightTimeoutError:
             result = 'null'
         else:
-            result = self.callsRetrieved.text_content()
             # dump to beautiful soup
             page_content = self.page.content()
 
