@@ -5,6 +5,7 @@ import os
 import sys
 import time as time
 from datetime import date
+import pytest
 
 from playwright.sync_api import Browser
 
@@ -99,15 +100,13 @@ def test_CaptureVerification(browser: Browser, test_read_config_file, load_conte
             CaptureVerificationResults_page.downloadCSVStart()
             LOGGER.exception('test_CaptureVerification: close Results page')
             #CaptureVerificationResults_page.context.tracing.stop(path="./output/CaptureVerifResults.zip")
-            CaptureVerificationResults_page.context.browser.stop_tracing()
-            CaptureVerificationResults_page.page.close()
-            CaptureVerificationResults_page.context.close()
+            pytest.fail('call recording errors in Capture Verification')
     else:
         LOGGER.info('test_CaptureVerification *** : test finished, no call recording issues, test passed')
-
-    # stop tracing
-    #CaptureVerificationResults_page.context.tracing.stop(path="./output/CaptureVerifResults.zip")
-    CaptureVerificationResults_page.context.browser.stop_tracing()
-
-    CaptureVerificationResults_page.page.close()
-    CaptureVerificationResults_page.context.close()
+    finally:
+        # stop tracing
+        #CaptureVerificationResults_page.context.tracing.stop(path="./output/CaptureVerifResults.zip")
+        CaptureVerificationResults_page.context.browser.stop_tracing()
+        CaptureVerificationResults_page.page.close()
+        CaptureVerificationResults_page.context.close()
+        LOGGER.info('test_CaptureVerification *** : test finished, no call recording issues, test finished and wrap up complete')

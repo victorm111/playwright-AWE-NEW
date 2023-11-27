@@ -100,6 +100,7 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
         LOGGER.exception('test_SearchReplay: no recorded calls found in Search and Replay')
         SearchReplayResults_page.page.close()
         SearchReplayResults_page.context.close()
+        pytest.fail('no calls in search and replay')
 
     else:
         LOGGER.info('test_SearchReplay: recorded calls found in Search and Replay')
@@ -111,6 +112,7 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
             LOGGER.exception('test_SearchReplay: check_no_recordings() not equal to false')
             SearchReplayResults_page.page.close()
             SearchReplayResults_page.context.close()
+            pytest.fail('invalid search and replay test')
 
         else:
             LOGGER.info('test_SearchReplay: check_no_recordings() equal to false')
