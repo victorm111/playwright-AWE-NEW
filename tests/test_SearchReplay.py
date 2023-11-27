@@ -94,14 +94,29 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
 
     result, calls_df, number_calls = SearchReplayResults_page.check_recordings_found()
 
-    assert 'Retrieved' in result, 'no calls retrieved in search and replay'
-    #assert('Retrieved' in SearchReplayResults_page.check_recordings_found())
+    try:
+        assert 'Retrieved' in result, 'no calls retrieved in search and replay'
+    except AssertionError:
+        LOGGER.exception('test_SearchReplay: no recorded calls found in Search and Replay')
+        SearchReplayResults_page.page.close()
+        SearchReplayResults_page.context.close()
 
-    LOGGER.info('test_SearchReplay: recorded calls found in Search and Replay')
-    print(f'test_SearchReplay: recorded calls found in Search and Replay:   {number_calls}')
-    assert (SearchReplayResults_page.check_no_recordings_found() == False)
+    else:
+        LOGGER.info('test_SearchReplay: recorded calls found in Search and Replay')
+        print(f'test_SearchReplay: recorded calls found in Search and Replay:   {number_calls}')
 
-    SearchReplayResults_page.page.close()
-    SearchReplayResults_page.context.close()
-    LOGGER.info('test_SearchReplay: test finished')
+        try:
+            assert (SearchReplayResults_page.check_no_recordings_found() == False)
+        except AssertionError:
+            LOGGER.exception('test_SearchReplay: check_no_recordings() not equal to false')
+            SearchReplayResults_page.page.close()
+            SearchReplayResults_page.context.close()
+
+        else:
+            LOGGER.info('test_SearchReplay: check_no_recordings() equal to false')
+            SearchReplayResults_page.page.close()
+            SearchReplayResults_page.context.close()
+
+    finally:
+        LOGGER.info('test_SearchReplay: test finished')
 

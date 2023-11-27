@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="working page down search and replay">
+    <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="working page down search and replay, handle zero retrieved calls in search and replay">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/pytest_in_AWE_Playwright_Nov2023.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/pytest_in_AWE_Playwright_Nov2023.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_CaptureVerification.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_CaptureVerification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_SearchReplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_SearchReplay.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -384,7 +385,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700952882777</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="working page down search and replay, handle zero retrieved calls in search and replay">
+      <option name="closed" value="true" />
+      <created>1701091344858</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1701091344858</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -408,25 +417,21 @@
     <MESSAGE value="init commit new laptop nov 2023" />
     <MESSAGE value="commit more stable capt verif wait table loaded, stable time frame menu select" />
     <MESSAGE value="working page down search and replay" />
-    <option name="LAST_COMMIT_MESSAGE" value="working page down search and replay" />
+    <MESSAGE value="working page down search and replay, handle zero retrieved calls in search and replay" />
+    <option name="LAST_COMMIT_MESSAGE" value="working page down search and replay, handle zero retrieved calls in search and replay" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tests/test_SearchReplay.py</url>
-          <line>96</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tests/test_SearchReplay.py</url>
-          <line>99</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pages/SearchAndReplay_result.py</url>
           <line>108</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/test_SearchReplay.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -95,15 +95,15 @@ def test_CaptureVerification(browser: Browser, test_read_config_file, load_conte
 
     except AssertionError:
         if call_issues != 'null':
-            LOGGER.debug('test_CaptureVerification: call issues found, downloadCSV')
+            LOGGER.exception('test_CaptureVerification: call issues found, downloadCSV')
             CaptureVerificationResults_page.downloadCSVStart()
-            LOGGER.debug('test_CaptureVerification: close Results page')
+            LOGGER.exception('test_CaptureVerification: close Results page')
             #CaptureVerificationResults_page.context.tracing.stop(path="./output/CaptureVerifResults.zip")
             CaptureVerificationResults_page.context.browser.stop_tracing()
             CaptureVerificationResults_page.page.close()
             CaptureVerificationResults_page.context.close()
     else:
-        LOGGER.debug('test_CaptureVerification: test finished, no call recording issues')
+        LOGGER.info('test_CaptureVerification *** : test finished, no call recording issues, test passed')
 
     # stop tracing
     #CaptureVerificationResults_page.context.tracing.stop(path="./output/CaptureVerifResults.zip")
