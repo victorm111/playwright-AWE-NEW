@@ -46,7 +46,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 
-@pytest.mark.skip(reason="no way of currently testing this")
+#pytest.mark.skip(reason="no way of currently testing this")
 def test_login(page: Page, test_read_config_file) -> None:
 
     LOGGER.debug('test_login: start ...')
