@@ -78,4 +78,5 @@ class WFOSearchAndReplayPage:
         return
 
     def searchMenuFound(self) -> bool:
+        self.Search.wait_for(timeout=25000, state='visible')
         return self.Search.is_visible()

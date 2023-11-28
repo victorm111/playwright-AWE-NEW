@@ -1,0 +1,1 @@
+2023-11-28 17:29:11,704,DEBUG, [C:\Users\victorm\AppData\Local\Programs\Python\Python312\Lib\asyncio\proactor_events.py:634,Using proactor: IocpProactor]
