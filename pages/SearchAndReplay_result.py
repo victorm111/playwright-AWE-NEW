@@ -138,7 +138,7 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
 
                     df = pd.read_html(str(table))
                     if table.tbody.tr['class'] == ['x-grid-row']:     # write to csv if search and replay row
-                        LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), store table to df')
+                        #LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), store table to df')
                         df_allCalls = pd.concat([df_allCalls, df[0].iloc[[0]]])
                         df_allCalls = df_allCalls.drop_duplicates()
                         counted_calls = len(df_allCalls)
