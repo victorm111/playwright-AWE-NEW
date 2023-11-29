@@ -71,13 +71,14 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
     def load(self) -> None:
         LOGGER.info('WFOSearchAndReplayResultsPage: load method, open search and replay results page')
         self.page.goto(self.URL)
+        self.dropDownArrow.wait_for(timeout=25000, state='visible')
         self.dropDownArrow.click()
-        self.Interactions.wait_for()
+        self.Interactions.wait_for(timeout=25000, state='visible')
         self.Interactions.click()
-        self.Search.wait_for()
+        self.Search.wait_for(timeout=25000, state='visible')
         self.Search.click()
         # edit textbox to change to 1d search
-        self.SearchTextBox.wait_for()
+        self.SearchTextBox.wait_for(timeout=25000, state='visible')
         return
 
     def populate_searchTextBox(self, days) -> None:
@@ -89,6 +90,7 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
 
     def clickSearch(self) -> None:
         # click search icon with updated 1d search window
+        self.SearchInit.wait_for(timeout=25000, state='visible')
         self.SearchInit.click()
         LOGGER.debug('WFOSearchAndReplayResultsPage: clickSearch() finished')
         return
@@ -109,8 +111,9 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
         df = pd.DataFrame()
 
         try:
-            self.SearchResults.wait_for(timeout=10000)      # check on results page
-            result = self.callsRetrieved.text_content(timeout=1000)
+            self.SearchResults.wait_for(timeout=10000, state='visible')      # check on results page
+            self.callsRetrieved.wait_for(timeout=25000, state='visible')
+            result = self.callsRetrieved.text_content(timeout=10000)
         except PlaywrightTimeoutError:
             result = 'null'
         else:

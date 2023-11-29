@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="working page down search and replay, handle zero retrieved calls in search and replay">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/pytest_in_AWE_Playwright_Nov2023.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/pytest_in_AWE_Playwright_Nov2023.xml" afterDir="false" />
+    <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="init commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_CaptureVerification.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_CaptureVerification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_SearchReplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_SearchReplay.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,20 +27,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;victorm111&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="d86cd373-1f68-4ebe-ad9f-0fc550426507" />
-        <option name="url" value="https://github.com/victorm111/playwright-AWE-NEW.git" />
-      </UrlAndAccount>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -70,18 +54,10 @@
     &quot;auto.test.manager.delay&quot;: &quot;5000&quot;,
     &quot;git-widget-placeholder&quot;: &quot;CaptVerif-selectTime&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/victorm/OneDrive - Avaya/Documents/PycharmProjects/AWE-Playwright-Nov2023/requirements.txt&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/victorm/PycharmProjects/playwright-AWE/pages&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PythonContentEntriesConfigurable&quot;
   }
 }</component>
-  <component name="PyConsoleOptionsProvider">
-    <option name="myPythonConsoleState">
-      <console-settings module-name="playwright-AWE" is-module-sdk="true">
-        <option name="myUseModuleSdk" value="true" />
-        <option name="myModuleName" value="playwright-AWE" />
-      </console-settings>
-    </option>
-  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\victorm\PycharmProjects\playwright-AWE\pages" />
@@ -275,138 +251,22 @@
     </task>
     <task id="LOCAL-00023" summary="init commit">
       <option name="closed" value="true" />
-      <created>1697814944563</created>
+      <created>1701200045636</created>
       <option name="number" value="00023" />
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
-      <updated>1697814944563</updated>
+      <updated>1701200045636</updated>
     </task>
     <task id="LOCAL-00024" summary="init commit">
       <option name="closed" value="true" />
-      <created>1698060650606</created>
+      <created>1701203778304</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1698060650606</updated>
+      <updated>1701203778304</updated>
     </task>
-    <task id="LOCAL-00025" summary="init commit">
-      <option name="closed" value="true" />
-      <created>1698335917943</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1698335917943</updated>
-    </task>
-    <task id="LOCAL-00026" summary="init commit">
-      <option name="closed" value="true" />
-      <created>1698338027454</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1698338027454</updated>
-    </task>
-    <task id="LOCAL-00027" summary="init commit">
-      <option name="closed" value="true" />
-      <created>1698768779384</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1698768779384</updated>
-    </task>
-    <task id="LOCAL-00028" summary="init commit new laptop nov 2023">
-      <option name="closed" value="true" />
-      <created>1699028537431</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1699028537431</updated>
-    </task>
-    <task id="LOCAL-00029" summary="init commit new laptop nov 2023">
-      <option name="closed" value="true" />
-      <created>1699347067867</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1699347067867</updated>
-    </task>
-    <task id="LOCAL-00030" summary="init commit new laptop nov 2023">
-      <option name="closed" value="true" />
-      <created>1699464418493</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1699464418493</updated>
-    </task>
-    <task id="LOCAL-00031" summary="commit more stable capt verif wait table loaded, stable time frame menu select">
-      <option name="closed" value="true" />
-      <created>1700156306136</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1700156306136</updated>
-    </task>
-    <task id="LOCAL-00032" summary="commit more stable capt verif wait table loaded, stable time frame menu select">
-      <option name="closed" value="true" />
-      <created>1700760831963</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1700760831963</updated>
-    </task>
-    <task id="LOCAL-00033" summary="working page down search and replay">
-      <option name="closed" value="true" />
-      <created>1700950236460</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1700950236460</updated>
-    </task>
-    <task id="LOCAL-00034" summary="working page down search and replay">
-      <option name="closed" value="true" />
-      <created>1700950610117</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1700950610117</updated>
-    </task>
-    <task id="LOCAL-00035" summary="working page down search and replay">
-      <option name="closed" value="true" />
-      <created>1700951096473</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1700951096473</updated>
-    </task>
-    <task id="LOCAL-00036" summary="working page down search and replay">
-      <option name="closed" value="true" />
-      <created>1700952882777</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1700952882777</updated>
-    </task>
-    <task id="LOCAL-00037" summary="working page down search and replay, handle zero retrieved calls in search and replay">
-      <option name="closed" value="true" />
-      <created>1701091344858</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1701091344858</updated>
-    </task>
-    <task id="LOCAL-00038" summary="working page down search and replay, handle zero retrieved calls in search and replay">
-      <option name="closed" value="true" />
-      <created>1701094990966</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1701094990966</updated>
-    </task>
-    <option name="localTasksCounter" value="39" />
+    <option name="localTasksCounter" value="25" />
     <servers />
-  </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
-    <option featureType="com.intellij.fileTypeFactory" implementationName="*.ini" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -422,19 +282,25 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="init commit" />
-    <MESSAGE value="init commit new laptop nov 2023" />
-    <MESSAGE value="commit more stable capt verif wait table loaded, stable time frame menu select" />
-    <MESSAGE value="working page down search and replay" />
-    <MESSAGE value="working page down search and replay, handle zero retrieved calls in search and replay" />
-    <option name="LAST_COMMIT_MESSAGE" value="working page down search and replay, handle zero retrieved calls in search and replay" />
+    <option name="LAST_COMMIT_MESSAGE" value="init commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pages/SearchAndReplay_result.py</url>
-          <line>108</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/tests/test_CaptureVerification.py</url>
+          <line>112</line>
+          <option name="timeStamp" value="125" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/test_CaptureVerification.py</url>
+          <line>93</line>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pages/CaptureVerification_results.py</url>
+          <line>549</line>
+          <option name="timeStamp" value="141" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
