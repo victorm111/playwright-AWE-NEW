@@ -111,7 +111,7 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
         df = pd.DataFrame()
 
         try:
-            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), find results')
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attempt to find results')
             self.SearchResults.wait_for(timeout=10000, state='visible')      # check on results page
             self.callsRetrieved.wait_for(timeout=25000, state='visible')
             result = self.callsRetrieved.text_content(timeout=10000)
@@ -137,10 +137,12 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
             while counted_calls < int(number_calls):
                 # pull each row, each row is a separate table
                 LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), pull soup')
+                print(f'counted_calls while loop, counted_calls, number_calls: {counted_calls}, {number_calls}')
                 tables = soup.find_all('table', class_='x-grid-item', role='presentation')
 
                 for table in tables:
                     count+=1
+                    print(f'table for loop, table, tables: {table}, {tables}')
 
                     df = pd.read_html(str(table))
                     if table.tbody.tr['class'] == ['x-grid-row']:     # write to csv if search and replay row
@@ -174,22 +176,24 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
                                 f'WFOSearchAndReplayResultsPage: check_recordings_found(), add df column names:  {column_names}')
                             columns_collected = 1
 
-
+                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), for table loop finished')
                 count=0             # reset count for new page
                 page_scrolled+=1
-                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attempt page down')
+                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attempt firstCell focus')
 
                 self.firstCell.first.focus(timeout=1000)              # select first instance in time column , required before page down
+                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attempt first page down')
                 self.page.keyboard.press('PageDown')
+                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attempt second page down')
                 self.page.keyboard.press('PageDown')
 
-                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), construct new soup after page down')
+                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), page down finished, construct new soup')
                 # re-dump to beautiful soup after page down
                 page_content = self.page.content()
                 # soup = 'null'
                 soup = BeautifulSoup(page_content, 'html.parser')
 
-            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attach column names')
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), counted_calls while loop finished, attach col names')
             # assign df column names
             df_allCalls.columns = column_names
             LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), dump duplicates')

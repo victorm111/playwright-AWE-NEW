@@ -6,6 +6,7 @@ import sys
 import time as time
 from datetime import date
 import pytest
+import glob
 
 from playwright.sync_api import Browser
 
@@ -45,11 +46,6 @@ LOGGER = logging.getLogger(__name__)
 def test_CaptureVerification(browser: Browser, test_read_config_file, load_context, playwright) -> None:
 
     LOGGER.debug('test_CaptureVerification: start ...')
-
-    # delete csv if exists, create new csv
-    output_path = './output/CaptureVerification/CaptureVerificationIssues*.csv'
-    if os.path.exists(output_path):
-        os.remove(output_path)
 
     # browser tracing
     # browser.start_tracing(screenshots=True, path='./output/browserTraceCaptureVerification.zip')
