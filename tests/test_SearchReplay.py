@@ -10,6 +10,7 @@ import os
 # from pages.login_result import DuckDuckGoResultPage
 from pages.SearchAndReplay import WFOSearchAndReplayPage
 from pages.SearchAndReplay_result import WFOSearchReplayResultsPage
+from pytest_html_reporter import attach
 
 import time as time
 from datetime import date

@@ -9,6 +9,7 @@ import pytest
 import glob
 
 from playwright.sync_api import Browser
+from pytest_html_reporter import attach
 
 # from pages.search import DuckDuckGoSearchPage
 # from pages.login_result import DuckDuckGoResultPage

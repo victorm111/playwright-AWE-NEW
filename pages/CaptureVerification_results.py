@@ -9,6 +9,7 @@ import pytest
 from bs4 import BeautifulSoup
 # generate random integers
 import random
+from pytest_html_reporter import attach
 
 import playwright
 from dotenv import load_dotenv
@@ -319,6 +320,7 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
             #expect((self.IssuesTableLoaded).first.or_(self.returnedIssuesEmpty)).to_be_visible(timeout=15000)
         LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: issue table loaded, select time menu')
         self.page.screenshot(path='./output/screenshot2.png')
+        #attach('./output/screenshot2.png')
 
             #self.time_frame_pin.wait_for(timeout=5000)
 

@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/CaptureVerification_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/CaptureVerification_results.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_CaptureVerification.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_CaptureVerification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_SearchReplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_SearchReplay.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,18 +52,18 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "auto.test.manager.delay": "5000",
-    "git-widget-placeholder": "CaptVerif-selectTime",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/victorm/PycharmProjects/playwright-AWE/pages",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;auto.test.manager.delay&quot;: &quot;5000&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;CaptVerif-selectTime&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/victorm/PycharmProjects/playwright-AWE/pages&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\victorm\PycharmProjects\playwright-AWE\pages" />
@@ -304,7 +311,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701347247854</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep">
+      <option name="closed" value="true" />
+      <created>1701352127081</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1701352127081</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

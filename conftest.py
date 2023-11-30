@@ -14,6 +14,7 @@ import pytest
 import pytest_html
 import yaml
 import pandas as pd
+from pytest_html_reporter import attach
 
 from playwright.sync_api import expect, Page
 from pages.login import WFOLoginPage
@@ -110,6 +111,18 @@ def load_context(page: Page, test_read_config_file) -> None:
     page.context.close()
     LOGGER.debug('conftest:: load_context: yield storage_state ...')
     yield storage_state
+
+# To create one log file for each worker with pytest-xdist,
+# you can leverage PYTEST_XDIST_WORKER to generate a unique filename
+# for each worker.
+def pytest_configure(config):
+    worker_id = os.environ.get("PYTEST_XDIST_WORKER")
+    if worker_id is not None:
+        logging.basicConfig(
+            format=config.getini("log_file_format"),
+            filename=f"tests_{worker_id}.log",
+            level=config.getini("log_file_level"),
+        )
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):

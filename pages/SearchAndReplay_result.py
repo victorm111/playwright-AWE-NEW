@@ -5,6 +5,7 @@ import time as time
 from datetime import date
 from typing import Tuple, Any
 import pytest
+from pytest_html_reporter import attach
 
 from bs4 import BeautifulSoup
 import pandas as pd
