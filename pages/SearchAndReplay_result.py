@@ -111,12 +111,15 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
         df = pd.DataFrame()
 
         try:
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), find results')
             self.SearchResults.wait_for(timeout=10000, state='visible')      # check on results page
             self.callsRetrieved.wait_for(timeout=25000, state='visible')
             result = self.callsRetrieved.text_content(timeout=10000)
         except PlaywrightTimeoutError:
+            LOGGER.exception('WFOSearchAndReplayResultsPage: check_recordings_found(), results element search timeout')
             result = 'null'
         else:
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() dump csv, results found')
             # dump to beautiful soup
             page_content = self.page.content()
 
@@ -127,6 +130,9 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
             counted_calls = 0       # calls counted scrolling through viewport
             count = 0
             page_scrolled = 0
+            column_names = list()       # store search and replay column names
+            no_columns = 0              # number of search and replay columns
+            columns_collected = 0       # confirm column names collected, saves re-looping
 
             while counted_calls < int(number_calls):
                 # pull each row, each row is a separate table
@@ -138,13 +144,41 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
 
                     df = pd.read_html(str(table))
                     if table.tbody.tr['class'] == ['x-grid-row']:     # write to csv if search and replay row
-                        #LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), store table to df')
+                        LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), store table to df')
                         df_allCalls = pd.concat([df_allCalls, df[0].iloc[[0]]])
                         df_allCalls = df_allCalls.drop_duplicates()
                         counted_calls = len(df_allCalls)
 
+                        # collect column names if not already done
+                        if not columns_collected:
+
+                            # get number of columns
+                            #no_columns = len(df_allCalls.columns)
+                            # pull headers
+                            script_tags = table.find_all('td')
+                            no_columns = len(script_tags)
+                            for i in range(no_columns) :
+                                #column_names[i] = table.tbody.tr.td['data-columnid']
+                                #column_names.append(table.tbody.tr.td['data-columnid'])
+                                try:
+                                    column_names.append(script_tags[i]['data-columnid'])
+                                    print(f'script tags i, data-columnid, {i}, {script_tags[i]['data-columnid']}')
+                                except KeyError:
+                                    column_names.append('img')
+
+                            # remove the img, was causing trouble as counted as two headers
+                            column_names.remove('img')
+                            LOGGER.debug(
+                                'WFOSearchAndReplayResultsPage: check_recordings_found(), column names retrieved')
+                            print(
+                                f'WFOSearchAndReplayResultsPage: check_recordings_found(), add df column names:  {column_names}')
+                            columns_collected = 1
+
+
                 count=0             # reset count for new page
                 page_scrolled+=1
+                LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attempt page down')
+
                 self.firstCell.first.focus(timeout=1000)              # select first instance in time column , required before page down
                 self.page.keyboard.press('PageDown')
                 self.page.keyboard.press('PageDown')
@@ -155,10 +189,14 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
                 # soup = 'null'
                 soup = BeautifulSoup(page_content, 'html.parser')
 
-            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() dump csv')
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attach column names')
+            # assign df column names
+            df_allCalls.columns = column_names
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), dump duplicates')
             df_dropDupAllCalls = df_allCalls.drop_duplicates()  # drop duplicates as scrolls down page
-
-            df_dropDupAllCalls.to_csv('./output/SearchReplay-CallsFound.csv', mode='a')
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() dump csv')
+            df_dropDupAllCalls.to_csv('./output/SR/SearchReplay-CallsFound.csv', mode='a')
+            LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() dumped csv')
 
         finally:
             self.page.screenshot(path='./output/screenshot5.png')

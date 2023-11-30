@@ -46,6 +46,11 @@ def test_CaptureVerification(browser: Browser, test_read_config_file, load_conte
 
     LOGGER.debug('test_CaptureVerification: start ...')
 
+    # delete csv if exists, create new csv
+    output_path = './output/CaptureVerification/CaptureVerificationIssues*.csv'
+    if os.path.exists(output_path):
+        os.remove(output_path)
+
     # browser tracing
     # browser.start_tracing(screenshots=True, path='./output/browserTraceCaptureVerification.zip')
     # create new page object class

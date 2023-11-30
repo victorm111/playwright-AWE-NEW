@@ -88,7 +88,7 @@ def test_SearchReplay(browser: Browser, test_read_config_file, load_context, pla
     # browser.stop_tracing()
 
     # delete csv if exists, create new search and replay csv
-    output_path = './output/SearchReplay-CallsFound.csv'
+    output_path = './output/SR/SearchReplay-CallsFound.csv'
     if os.path.exists(output_path):
         os.remove(output_path)
 
