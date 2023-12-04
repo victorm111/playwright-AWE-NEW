@@ -60,8 +60,6 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         self.time_frame_select = self.page.get_by_test_id("MuiButtonBase-root MuiIconButton-root icon-time-picker verint-icon-button verint-icon-medium") # lhs menu
         self.time_frame_pin = self.page.get_by_label("Pin Filter Pane")
         self.time_frame_unpin = self.page.get_by_label("Pin Filter Pane").get_by_test_id('MuiButtonBase-root MuiIconButton-root icon-unpin verint-icon-button verint-icon-small')
-        #self.time_select = self.page.get_by_role("heading", name = "Time Frame")
-        # iframe locator for set time lhs menu, used 'last' radio button selector
 
         self.time_radio_last = self.page.get_by_role("radio", name="timeFrameLastDateTimeRadio", exact=True)
         self.time_radio_last_2 = self.page.get_by_test_id("verint-regular-label last-label")    # to set
@@ -107,8 +105,6 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
 # update parent locators
 
         self.Issues = self.page.get_by_text("Issues")
-        #self.Issues = self.page.get_by_text(self.Issues_selector)
-        #self.Issues =  self.page.locator(self.Issues_selector_1).filter(has=self.page.get_by_label(self.Issues_selector))
         self.dropDownArrow = self.page.locator(self.dropDownArrow_selector)
 
         self.CaptVerif = self.page.get_by_label(self.CaptVerif_selector)
@@ -119,13 +115,13 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         LOGGER.info('WFOCaptureVerificationResultsPage: load method start')
         self.page.goto(self.URL)
         self.context.tracing.start(sources=True, screenshots=True, snapshots=True)
+        self.dropDownArrow.wait_for(timeout=45000, state='visible')
         self.dropDownArrow.click()
-        self.CaptVerif.wait_for()
+        self.CaptVerif.wait_for(timeout=45000, state='visible')
         self.CaptVerif.click()
-        self.Issues.wait_for()
+        self.Issues.wait_for(timeout=45000, state='visible')
         self.Issues.click()
         LOGGER.debug('WFOCaptureVerificationResultsPage: load method:: wait issue table to load if available')
-        #expect((self.IssuesTableLoaded).first.or_(self.returnedIssuesEmpty)).to_be_visible(timeout=15000)
         LOGGER.info('WFOCaptureVerificationResultsPage: load method finished')
         return
 
@@ -186,12 +182,10 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         issues_listed = 'null'
 
         try:
-            #expect(self.IssuesTableLoaded).to_be_visible(timeout=25000).or_expect(self.returnedIssuesEmpty).to_be_visible(timeout=10000)
-            #expect(self.IssuesTableLoaded).or_(self.returnedIssuesEmpty).to_be_visible(timeout=25000)
+
             self.IssuesTableLoaded.wait_for(timeout=25000, state='visible')
             issues_listed = self.IssuesTableLoaded.is_visible(timeout=25000)
-            ####expect((self.IssuesTableLoaded).first.or_(self.returnedIssuesEmpty)).to_be_visible(timeout=25000)
-            # expect((self.IssuesTableLoaded).first.or_(self.returnedIssuesEmpty)).to_be_visible(timeout=15000)
+
 
         except PlaywrightTimeoutError:      # if issues list locator not found, confirm empty table
             LOGGER.exception('WFOCaptureVerificationResultsPage: checkIssueTable:: timeout error retrieving capt verif table, check for empty table')
@@ -242,117 +236,13 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         LOGGER.info('WFOCaptureVerificationResultsPage: config_timeInterval method start')
         page_content = self.page.content()
         html = BeautifulSoup(page_content, 'html.parser')
-        #left_timeframe_menu_last_radio=html.find('input', attrs = {'name': 'timeFrameLastDateTimeRadio'})
 
-            # re-select time menu, inject last 24hr time interval
-            # self.time_frame_select.click()
-            # read name from radio buttons
-            #name_active_radio = self.TimeFrame_bothRadioButtonTrue
-            # which button, find name of active button
-            # check true radio button, need run is_checked() routine to determine active radio
-            # true or false identifies two radio search options, but does not mark radio button status !!
-            # need is_checked() routine on the locator
-
-            # select time frame menu not available
-
-            # wait for time select menu to be available, page will load issues automatically and take over !
-
-            # confirm issue table loaded
-            # LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: wait issue table to load if available')
-            #expect(self.IssuesTableLoaded.or_(self.returnedIssuesEmpty).first).to_be_visible(timeout=10000)
         LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: confirm issues table loaded')
         emptyConfirmed, issues_listed = self.checkIssueTable()
-        print(f'WFOCaptureVerificationResultsPage: config_timeInterval:: random hours issues table loaded, emptyConfirmed, issues_loaded: {emptyConfirmed} , {issues_listed}')
 
-
-        # emptyConfirmed = 'null'
-        # issues_listed = 'null'
-        #
-        #
-        # try:
-        #     #expect(self.IssuesTableLoaded).to_be_visible(timeout=25000).or_expect(self.returnedIssuesEmpty).to_be_visible(timeout=10000)
-        #     #expect(self.IssuesTableLoaded).or_(self.returnedIssuesEmpty).to_be_visible(timeout=25000)
-        #     self.IssuesTableLoaded.wait_for(timeout=25000, state='visible')         # wait until visible, waits for issues to load !!!
-        #     issues_listed = self.IssuesTableLoaded.is_visible(timeout=25000)
-        #         ####expect((self.IssuesTableLoaded).first.or_(self.returnedIssuesEmpty)).to_be_visible(timeout=25000)
-        #         # expect((self.IssuesTableLoaded).first.or_(self.returnedIssuesEmpty)).to_be_visible(timeout=15000)
-        #
-        # except PlaywrightTimeoutError:      # if issues list locator not found, confirm empty table
-        #     LOGGER.exception('WFOCaptureVerificationResultsPage: config_timeInterval:: timeout error issues container locator not found, now confirm empty table')
-        #     try:
-        #         expect(self.returnedIssuesEmpty).to_be_visible(timeout=5000)
-        #     except PlaywrightTimeoutError:
-        #         LOGGER.exception(
-        #             'WFOCaptureVerificationResultsPage: config_timeInterval:: timeout error retrieving capt verif table, nothing returned')
-        #     else:
-        #         emptyConfirmed = self.returnedIssuesEmpty.is_visible()
-        #         if not emptyConfirmed:
-        #             LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed issues table empty')
-        #             print(
-        #                 f'WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed issues table empty: {emptyConfirmed}')
-        #
-        #         else:
-        #             # if issues_listed = False then no issues in table container, confirm empty table
-        #             LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed issues table no calls, confirm empty')
-        #             print(
-        #                 f'WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed issues table no calls, confirm empty: {issues_listed}')
-        #             if not issues_listed:
-        #                 try:
-        #                     expect(self.returnedIssuesEmpty).to_be_visible(timeout=5000)
-        #                 except PlaywrightTimeoutError:
-        #                     LOGGER.exception(
-        #                     'WFOCaptureVerificationResultsPage: config_timeInterval:: timeout error retrieving capt verif table locators')
-        #                     pytest.fail('error retrieving capture verification table')
-        #                 else:
-        #                     emptyConfirmed = self.returnedIssuesEmpty.is_visible()
-        #                     if emptyConfirmed:
-        #                         LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed issues table empty')
-        #                         print(
-        #                             f'WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed issues table empty: {emptyConfirmed}')
-        #                     else:
-        #                         LOGGER.error('WFOCaptureVerificationResultsPage: config_timeInterval:: issue table has valid issues listed')
-        #
-        #
-
-
-            # maybe put in new test to check if table populated??
-
-            #expect((self.IssuesTableLoaded).first.or_(self.returnedIssuesEmpty)).to_be_visible(timeout=15000)
         LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: issue table loaded, select time menu')
         self.page.screenshot(path='./output/screenshot2.png')
-        #attach('./output/screenshot2.png')
 
-            #self.time_frame_pin.wait_for(timeout=5000)
-
-            # end_time = datetime.now() + timedelta(seconds=25)   # 25s timeout for access time menu, enough time for any issues to load
-            # LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: start time frame menu wait loop')
-            # while not self.TimeFrame_bothRadioButtonFalse.is_visible():
-            #     self.time_frame_select.wait_for(timeout=2000)
-            #     self.time_frame_select.click()
-            #     LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: time frame menu wait loop clicked time frame menu')
-            #     if not self.time_frame_unpin.is_visible(timeout=2000):
-            #         LOGGER.debug(
-            #             'WFOCaptureVerificationResultsPage: config_timeInterval:: time frame menu wait loop unpin not visible, reselect time frame menu')
-            #         self.time_frame_select.click()
-            #         LOGGER.debug(
-            #             'WFOCaptureVerificationResultsPage: config_timeInterval:: time frame menu wait loop clicked time frame menu ok')
-            #         self.time_frame_pin.click(timeout=1000)
-            #         LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: pinned time frame menu OK')
-            #         break
-            #     current_time = datetime.now()
-            #     if current_time == end_time:
-            #         LOGGER.error('WFOCaptureVerificationResultsPage: config_timeInterval method timeout time menu radio button access')
-            #         break
-
-            # record the active time interval radio button
-            # if self.TimeFrame_bothRadioButtonTrue.is_checked(timeout=1000):
-            #     self.activeRadioTimeFrame = self.TimeFrame_bothRadioButtonTrue.get_attribute('name')
-            # else:
-            #     self.activeRadioTimeFrame = self.TimeFrame_bothRadioButtonFalse.get_attribute('name')
-            # LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed active radio button ')
-            # print(f'WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed active radio button: {self.activeRadioTimeFrame}')
-
-    # 2nd go to collect active radio
 
         LOGGER.debug(
             'WFOCaptureVerificationResultsPage: config_timeInterval re-pin time frame after random hours table loaded')
@@ -363,24 +253,17 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
 
     # query radio buttons
         try:
-                 #expect(self.IssuesTableLoaded).to_be_visible(timeout=25000).or_expect(self.returnedIssuesEmpty).to_be_visible(timeout=10000)
-                 #expect(self.IssuesTableLoaded).or_(self.returnedIssuesEmpty).to_be_visible(timeout=25000)
-                 #self.lastRadio_disabled.is_disabled(timeout=10000)
 
-                 #expect(self.lastRadio_disabled).to_be_disabled(timeout=25000).or_expect(
-                     #self.fromRadio_disabled).to_be_visible(timeout=25000)
 
             self.lastRadio_disabled.wait_for(timeout=10000, state = 'visible')
             self.lastRadio_disabled.is_disabled(timeout=10000)
 
-                 ####expect((self.IssuesTableLoaded).first.or_(self.returnedIssuesEmpty)).to_be_visible(timeout=25000)
-                 # expect((self.IssuesTableLoaded).first.or_(self.returnedIssuesEmpty)).to_be_visible(timeout=15000)
         except PlaywrightTimeoutError:
 
             LOGGER.exception('WFOCaptureVerificationResultsPage: config_timeInterval:: timeout error retrieving last radio button status, check from status')
 
             try:
-            #self.fromRadio_disabled.is_visible(timeout=10000)
+
                 self.fromRadio_disabled.wait_for(timeout=10000, state = 'visible')
                 expect(self.fromRadio_disabled).to_be_visible(timeout=10000)
 
@@ -400,21 +283,8 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         finally:
             LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: radio button check complete')
 
-
-            # try:
-            #     self.lastRadio_disabled.is_disabled(timeout=1000)
-            # except PlaywrightTimeoutError:
-            #
-            #     self.activeRadioTimeFrame = 'from'
-            # else:
-            #     self.activeRadioTimeFrame = 'last'
-            # LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed active radio button ')
             print(f'WFOCaptureVerificationResultsPage: config_timeInterval:: confirmed active radio button: {self.activeRadioTimeFrame}')
 
-            #self.time_frame_select.click()
-            #self.time_frame_pin.click()
-
-            #LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: time frame menu select OK')
 
         # if last not active set it
         if self.activeRadioTimeFrame != 'last':
@@ -468,8 +338,6 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
             self.time_apply_enabled.click(timeout=10000)
             LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval previous time frame was last, inject random hours, apply clicked and completed ok')
 
-            #self.time_apply_enabled.click()  # hit apply button
-            #LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval previous time frame was last, inject random hours, random applied ok')
             # now inject 24 , hours already selected, pin time menu again
 
             # wait until results page loaded
@@ -489,21 +357,6 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
             LOGGER.debug(
                     'WFOCaptureVerificationResultsPage: config_timeInterval previous time frame was last, inject random hours completed and applied, pin time frame completed OK')
 
-
-                #self.time_frame_select.wait_for(timeout=2000)
-                #self.time_frame_select.click()
-
-                # try:
-                #     self.time_frame_pin.click()
-                #
-                # except PlaywrightTimeoutError:
-                #     LOGGER.exception(
-                #         'WFOCaptureVerificationResultsPage: config_timeInterval:: time menu not pinned, reselect time menu')
-                #     self.time_frame_select.wait_for(timeout=2000)
-                #     self.time_frame_pin.click()
-                #
-                # else:
-                #     LOGGER.debug('WFOCaptureVerificationResultsPage: config_timeInterval:: time menu pinned successfully')
 
             #self.time_frame_select.click()
             self.time_config_box.clear()

@@ -72,14 +72,14 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
     def load(self) -> None:
         LOGGER.info('WFOSearchAndReplayResultsPage: load method, open search and replay results page')
         self.page.goto(self.URL)
-        self.dropDownArrow.wait_for(timeout=25000, state='visible')
+        self.dropDownArrow.wait_for(timeout=45000, state='visible')
         self.dropDownArrow.click()
-        self.Interactions.wait_for(timeout=25000, state='visible')
+        self.Interactions.wait_for(timeout=45000, state='visible')
         self.Interactions.click()
-        self.Search.wait_for(timeout=25000, state='visible')
+        self.Search.wait_for(timeout=45000, state='visible')
         self.Search.click()
         # edit textbox to change to 1d search
-        self.SearchTextBox.wait_for(timeout=25000, state='visible')
+        self.SearchTextBox.wait_for(timeout=45000, state='visible')
         return
 
     def populate_searchTextBox(self, days) -> None:
