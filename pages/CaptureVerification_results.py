@@ -115,7 +115,7 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
         LOGGER.info('WFOCaptureVerificationResultsPage: load method start')
         self.page.goto(self.URL)
         self.context.tracing.start(sources=True, screenshots=True, snapshots=True)
-        self.dropDownArrow.wait_for(timeout=45000, state='visible')
+        self.dropDownArrow.wait_for(timeout=60000, state='visible')
         self.dropDownArrow.click()
         self.CaptVerif.wait_for(timeout=45000, state='visible')
         self.CaptVerif.click()

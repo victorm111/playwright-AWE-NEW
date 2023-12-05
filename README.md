@@ -45,7 +45,7 @@ import project
 pip install -r requirements.txt
 
 ## project layout
-config: includes input config filr
+config: includes input config file, version label
 logs: incl pytest logs
 output: additional logs and output files
 pages: page object model files, model webpages

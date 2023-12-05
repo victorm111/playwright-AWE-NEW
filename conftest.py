@@ -11,6 +11,9 @@ from datetime import date
 from dotenv import load_dotenv
 
 import pytest
+
+import platform
+import src.__init__     # contains sw version
 import pytest_html
 import yaml
 import pandas as pd
@@ -40,6 +43,7 @@ current_time = time.strftime("%H_%M_%S", t)
 
 # set expect timeout global
 expect.set_options(timeout=10_000)
+
 logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
 
@@ -47,6 +51,7 @@ LOGGER = logging.getLogger(__name__)
 @pytest.fixture(scope="function")
 def test_read_config_file():
 
+    LOGGER.debug('conftest:: test_read_config_file() start')
     cfgfile_parse_error = 0
     # create an Empty DataFrame object
     df_config = pd.DataFrame()
@@ -74,6 +79,14 @@ def test_read_config_file():
         # check config file read ok
         assert cfgfile_parse_error == 0, 'assert error test_read_config_file: yaml cfg file not read'  # if cfgfile_parse_error = 1
         print("test_read_config_file(): read finished OK")
+        python_version = str(platform.python_version())
+        pytest_version = str(pytest.__version__)
+        testcode_version = str(src.__init__.__version__)
+        LOGGER.debug(f'conftest:: python version: {python_version}')
+        LOGGER.debug(f'conftest:: pytest version: , {pytest_version}')
+        LOGGER.debug(f'conftest:: test code version: {testcode_version}')
+        LOGGER.debug('conftest:: test_read_config_file() finished')
+
     yield df_config
 
 @pytest.fixture(scope="function")

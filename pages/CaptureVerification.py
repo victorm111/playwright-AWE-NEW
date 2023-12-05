@@ -78,7 +78,7 @@ class WFOCaptureVerificationPage():
     def load(self) -> None:
         LOGGER.info('WFOCaptureVerificationPage: load method, open issues page')
         self.page.goto(self.URL)
-        self.dropDownArrow.wait_for(timeout=45000, state='visible')
+        self.dropDownArrow.wait_for(timeout=60000, state='visible')
         self.dropDownArrow.click()
         self.CaptVerif.wait_for(timeout=45000, state='visible')
         self.CaptVerif.click()

@@ -3,6 +3,8 @@
 # Variables definition
 # Pycharm, target and working directories: C:\Users\victorm\PycharmProjects\pythonProject1\auto
 # set working dir below to be same as this
+# Version label
+
 dirs:
   working: !!str "C:\\Users\\victorm\\PycharmProjects\\pythonProject1\\auto\\"  # note above wrt PyCharm working + target directories
   

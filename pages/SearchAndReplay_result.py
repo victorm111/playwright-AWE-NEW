@@ -72,7 +72,7 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
     def load(self) -> None:
         LOGGER.info('WFOSearchAndReplayResultsPage: load method, open search and replay results page')
         self.page.goto(self.URL)
-        self.dropDownArrow.wait_for(timeout=45000, state='visible')
+        self.dropDownArrow.wait_for(timeout=60000, state='visible')
         self.dropDownArrow.click()
         self.Interactions.wait_for(timeout=45000, state='visible')
         self.Interactions.click()
