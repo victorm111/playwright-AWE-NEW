@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commended code">
-      <change afterPath="$PROJECT_DIR$/__main__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/CaptureVerification.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/CaptureVerification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/CaptureVerification_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/CaptureVerification_results.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/SearchAndReplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/SearchAndReplay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/logs/pytest-logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/logs/pytest-logs.txt" afterDir="false" />
-    </list>
+    <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commented code, added version label" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -418,7 +403,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701697319111</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commented code, added version label">
+      <option name="closed" value="true" />
+      <created>1701789099859</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1701789099859</updated>
+    </task>
+    <task id="LOCAL-00034" summary="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commented code, added version label">
+      <option name="closed" value="true" />
+      <created>1701789181504</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1701789181504</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -439,7 +440,8 @@
     <MESSAGE value="completed csv S+R created ok, attached headers" />
     <MESSAGE value="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep" />
     <MESSAGE value="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commended code" />
-    <option name="LAST_COMMIT_MESSAGE" value="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commended code" />
+    <MESSAGE value="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commented code, added version label" />
+    <option name="LAST_COMMIT_MESSAGE" value="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commented code, added version label" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
