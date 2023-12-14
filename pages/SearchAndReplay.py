@@ -57,6 +57,7 @@ class WFOSearchAndReplayPage:
         self.Interactions_selector = '#INTERACTION'
         self.Search = self.page.get_by_test_id('INTERACTION->interactions_tab->search_tab')
         self.Search_selector = 'INTERACTION->interactions_tab->search_tab'
+        return
 
         def __repr__(self):
             class_name = type(self).__name__

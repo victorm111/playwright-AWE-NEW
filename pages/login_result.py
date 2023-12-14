@@ -14,6 +14,7 @@ class WFOLoginResultPage:
         self.dropDownArrow = page.locator('#as-navdrawer-arrow-btnInnerEl')
         self.user_details = self.username_loggedIn.text_content()
         self.loggedInTitle = self.page.title()
+        return
 
     def result_login_user(self) -> str:  # return username shown after logged in OK
         # wait for blue arrow button to be visible

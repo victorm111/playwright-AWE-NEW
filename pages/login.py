@@ -55,6 +55,7 @@ class WFOLoginPage():
         self.password_field_second = page.locator('#password')
         self.signIn_button = page.locator('.loginButtonLabel')
         self.signIn_button_selector = '.loginButtonLabel'
+        return
 
 
         def __repr__(self):
@@ -69,6 +70,7 @@ class WFOLoginPage():
         self.page.goto(self.URL)
         self.page.once("load", lambda: LOGGER.debug('WFOLoginPage: URL loaded successfully'))
         self.page.screenshot(path="output/screenshot-WFOLoginPageLoaded.png")
+        return
 
     def login(self) -> None:
         LOGGER.info('WFOLoginPage: login method')
@@ -83,3 +85,4 @@ class WFOLoginPage():
         #self.page.wait_for_selector(self.login_button_selector)
         self.login_button.click()
         self.page.screenshot(path="output/screenshot-loggedIn.png")
+        return

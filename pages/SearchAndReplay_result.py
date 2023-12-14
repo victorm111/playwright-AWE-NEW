@@ -68,6 +68,7 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
         self.dropDownArrow = self.page.locator(self.dropDownArrow_selector)
         self.Interactions = self.page.locator(self.Interactions_selector)
         self.Search = self.page.get_by_test_id(self.Search_selector)
+        return
 
     def load(self) -> None:
         LOGGER.info('WFOSearchAndReplayResultsPage: load method, open search and replay results page')
@@ -116,9 +117,11 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
             self.SearchResults.wait_for(timeout=10000, state='visible')      # check on results page
             self.callsRetrieved.wait_for(timeout=25000, state='visible')
             result = self.callsRetrieved.text_content(timeout=10000)
+
         except PlaywrightTimeoutError:
             LOGGER.exception('WFOSearchAndReplayResultsPage: check_recordings_found(), results element search timeout')
             result = 'null'
+
         else:
             LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() dump csv, results found')
             # dump to beautiful soup
@@ -184,17 +187,22 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
 
                 try:
                     self.firstCell.first.focus(timeout=25000)              # select first instance in time column , required before page down
+
                 except PlaywrightTimeoutError:
+
                     LOGGER.exception(
                         'WFOSearchAndReplayResultsPage: check_recordings_found(), attempt first cell focus fail, timeout')
+
                 except:
+
                     LOGGER.exception('WFOSearchAndReplayResultsPage: check_recordings_found(), attempt first cell focus fail')
+
                 else:
+
                     LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attempt first page down')
                     self.page.keyboard.press('PageDown')
                     LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), attempt second page down')
                     self.page.keyboard.press('PageDown')
-
                     LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found(), page down finished, construct new soup')
                     # re-dump to beautiful soup after page down
                     page_content = self.page.content()
@@ -211,8 +219,8 @@ class WFOSearchReplayResultsPage(WFOSearchAndReplayPage):
             LOGGER.debug('WFOSearchAndReplayResultsPage: check_recordings_found() dumped csv')
 
         finally:
-            self.page.screenshot(path='./output/screenshot5.png')
 
+            self.page.screenshot(path='./output/screenshot5.png')
             print(f'WFOSearchAndReplayResultsPage: check_recordings_found(), *** results:  {result} {number_calls}')
             LOGGER.info('WFOSearchAndReplayResultsPage: check_recordings_found() finished')
             return result, df_dropDupAllCalls, number_calls

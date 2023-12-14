@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95dca31d-abe4-4a4c-9332-43ad82ae21a4" name="Changes" comment="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commented code, added version label &gt;&gt; merge and push to master">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/CaptureVerification.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/CaptureVerification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/CaptureVerification_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/CaptureVerification_results.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/SearchAndReplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/SearchAndReplay.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/SearchAndReplay_result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login_result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -450,7 +456,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701851538896</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="completed csv S+R created ok, attached headers, wait on single focus for search and replay csv download prep, delay in all search and replay + results, capt verif + results, remove commented code, added version label &gt;&gt; merge and push to master">
+      <option name="closed" value="true" />
+      <created>1702382496217</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1702382496217</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -490,7 +504,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pages/SearchAndReplay_result.py</url>
-          <line>167</line>
+          <line>170</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

@@ -109,6 +109,7 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
 
         self.CaptVerif = self.page.get_by_label(self.CaptVerif_selector)
         LOGGER.info('WFOCaptureVerificationResultsPage: init class finished')
+        return
 
     def load(self) -> None:
         """load the capture verification results page"""
@@ -159,14 +160,13 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
                     f'WFOCaptureVerificationResultsPage: pinTimeFrame:: time frame pin success::  count , status: {tf_pin_count} {tf_pinned}')
         LOGGER.info(
             'WFOCaptureVerificationResultsPage: pinTimeFrame():: end')
+
         return tf_pinned
 
 
     def checkLeftMenuAvailable(self) -> str:
 
-
         """confirm left hand side menu available including org, datasource etc., also init time setting """
-
         LOGGER.info('WFOCaptureVerificationResultsPage: checkLeftMenuAvailable method start')
         self.leftMenu.wait_for()
         LOGGER.info('WFOCaptureVerificationResultsPage: checkLeftMenuAvailable method finished')
@@ -378,7 +378,6 @@ class WFOCaptureVerificationResultsPage(WFOCaptureVerificationPage):
 
         LOGGER.info('WFOCaptureVerificationResultsPage: config_timeInterval method finished')
         self.page.screenshot(path='./output/screenshot3.png')
-
         return
 
     def check_recordings_found(self, time_out) -> str:
